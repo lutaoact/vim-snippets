@@ -2,6 +2,19 @@
 
 priority -10
 
+#######################
+## My Config Begin
+#######################
+snippet ifp "if error then processResErr(c, err)"
+if err != nil {
+	processResErr(c, err)
+	return
+}
+endsnippet
+#######################
+## My Config End
+#######################
+
 # shorthand variable declaration
 snippet : "v := value"
 ${1} := ${0}
