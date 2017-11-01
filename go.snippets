@@ -10,6 +10,19 @@ if err != nil {
 	processResErr(c, err)
 	return
 }
+${0}
+endsnippet
+
+snippet ifa "if error then processResErr(c, err)"
+if err != nil {
+	fmt.Printf("err = %+v\n", err)
+	api.E(c, api.NewHttpErr(
+		http.StatusBadRequest,
+		"${1:illegalOp}",
+		[]interface{}{${2:""}, err.Error()},
+	))
+	return
+}
 endsnippet
 #######################
 ## My Config End
