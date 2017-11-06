@@ -15,14 +15,24 @@ endsnippet
 
 snippet ifa "if error then processResErr(c, err)"
 if err != nil {
-	fmt.Printf("err = %+v\n", err)
+	log.Println(err)
 	api.E(c, api.NewHttpErr(
 		http.StatusBadRequest,
 		"${1:illegalOp}",
-		[]interface{}{${2:""}, err.Error()},
+		[]interface{}{"${2:desc}", err.Error()},
 	))
 	return
 }
+endsnippet
+
+snippet api "api.E"
+log.Println(err)
+api.E(c, api.NewHttpErr(
+	http.StatusBadRequest,
+	"${1:illegalOp}",
+	[]interface{}{"${2:desc}", err.Error()},
+))
+return
 endsnippet
 #######################
 ## My Config End
